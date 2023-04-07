@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+
+- name: postgres 
+  schema: public 
+  database: raw 
+
+  tables:
+  - name: events
+    description: checkout, package_shipped, add_to_cart, and page_view events 
+
+  - name: users 
+
+  - name: orders 
+
+  - name: addresses 
+    description: a row for customer addresses including zipcode, state, and country 
+
+  - name: promos 
+
+  - name: order_items
+
+  - name: products 
