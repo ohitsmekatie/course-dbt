@@ -1,6 +1,6 @@
 select 
     product_id,
     lower(name) as product_name,
-    price,
-    inventory
+    price as product_price_dollars,
+    inventory as inventory_amount 
 from {{ source('postgres', 'products') }}

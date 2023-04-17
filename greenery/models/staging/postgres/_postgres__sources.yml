@@ -9,16 +9,123 @@ sources:
   tables:
   - name: events
     description: checkout, package_shipped, add_to_cart, and page_view events 
+    columns:
+      - name: event_id 
+        description: unique identifier of the event 
+      - name: session_id
+        description: UUID of each browsing session on the platform which can contain many events
+      - name: user_id 
+        description: user_id associated with the event 
+      - name: page_url
+        description: URL that the event happened on 
+      - name: created_at 
+        description: timestamp of the event 
+      - name: event_type 
+        description: type of event 
+      - name: order_id 
+        description: If the event is specific to an order (mostly used for checkout)
+      - name: product_id 
+        description: If the event is specific to a product
 
   - name: users 
+    description: a row for each user on the platform 
+    columns:
+      - name: user_id 
+        description: unique identifier of the user
+        tests:
+          - unique 
+      - name: first_name
+        description: first name of the user 
+      - name: last_name 
+        description: last name of the user
+      - name: email
+        description: the email of the user 
+      - name: phone_number 
+        description: user phone number 
+      - name: created_at
+        description: timestamp that the user was created 
+      - name: updated_at 
+        description: timestamp that the user was last updated 
+      - name: address_id 
+        description: address_id for the user. can be joined to the address table 
 
   - name: orders 
+    description: a row for each order that has happened on the platform 
+    columns:
+      - name: order_id 
+        description: unique identifier of the order 
+        tests:
+          - unique 
+      - name: user_id 
+        description: user_id of the user that placed the order 
+      - name: promo_id 
+        description: promo_id, if any was used on the order 
+      - name: address_id 
+        description: delivery address for the order. can be used to join address table 
+      - name: created_at 
+        description: timestamp when the order was created 
+      - name: order_cost 
+        description: dollar amount of the items in the order 
+      - name: shipping_cost 
+        description: dollar amount of shipping for the order 
+      - name: order_total
+        description: total cost of the order, including shipping 
+      - name: tracking_id 
+        description: tracking number for the order/package 
+      - name: shipping_service 
+        description: company that was used for shipping 
+      - name: estimated_delivery_at 
+        description: estimated date of delivery 
+      - name: delivered_at 
+        description: timestamp of the delivery 
+      - name: status 
+        description: status of the order 
 
   - name: addresses 
     description: a row for customer addresses including zipcode, state, and country 
+    columns:
+      - name: address_id
+        description: unique identier for an address of a customer 
+        tests:
+          - unique 
+      - name: address
+        description: the first few lines of the address 
+      - name: zipcode 
+        description: the address zipcode 
+      - name: state 
+        description: the address state 
+      - name: country 
+        description: the country of the address 
 
   - name: promos 
+    description: promotions w/ dollar amount and the status of the promo 
+    columns:
+      - name: promo_id
+      - name: discount 
+        description: absolute dollar amount that is given off with the code 
+      - name: status 
+        description: is the promo coode active or disabled 
 
   - name: order_items
+    description: order items in a given order 
+    columns:
+      - name: order_id 
+        description: id of the order that can be joined to the orders table
+      - name: product_id 
+        description: id of a single item in the order 
+      - name: quantity  
+        description: number of units of the product in this order 
 
   - name: products 
+    description: row for each unique product on the platform 
+    columns:
+      - name: product_id 
+        description: UUID for each unique product on the platform 
+        tests:
+          - unique 
+      - name: name 
+        description: name of the product 
+      - name: price 
+        description: price of the product 
+      - name: inventory
+        description: the amount of the inventory that exists for the product 

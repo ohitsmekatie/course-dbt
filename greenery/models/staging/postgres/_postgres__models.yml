@@ -1,0 +1,76 @@
+version: 2 
+
+models:
+
+  - name: stg_addresses 
+    description: transformed table for user addresses 
+    columns: 
+      - name: address_id
+      - name: address
+      - name: zipcode
+      - name: state
+      - name: country 
+    
+  - name: stg_events 
+    description: transformed table of events
+    columns: 
+      - name: event_id
+      - name: session_id
+      - name: user_id
+      - name: order_id
+      - name: product_id 
+      - name: page_url
+      - name: created_at
+      - name: event_type
+
+  - name: stg_order_items 
+    description: transformed table of items within a given order 
+    columns:
+      - name: order_id
+      - name: product_id
+      - name: product_quantity
+
+  - name: stg_orders 
+    description: transformed table of orders. each order has a unqique id. can be joined to order_items to get items in an order 
+    columns: 
+      - name: order_id
+      - name: user_id 
+      - name: promo_id
+      - name: address_id 
+      - name: tracking_id 
+      - name: created_at 
+      - name: estimated_delivery_at 
+      - name: delivered_at 
+      - name: order_cost
+      - name: shipping_cost 
+      - name: order_total 
+      - name: shipping_service 
+      - name: status 
+  
+  - name: stg_products 
+    description: a row for each product on the platform 
+    columns:  
+      - name: product_id 
+      - name: product_name 
+      - name: product_price_dollars 
+      - name: inventory_amount 
+
+  - name: stg_promos 
+    description: a row for each promo available for orders/products 
+    columns:
+      - name: promo_id
+      - name: discount 
+      - name: status   
+
+  - name: stg_users 
+    description: a row for each user on the platform 
+    columns: 
+      - name: user_id 
+      - name: first_name
+      - name: last_name 
+      - name: email
+      - name: phone_number 
+      - name: created_at
+      - name: updated_at
+      - name: address_id
+
