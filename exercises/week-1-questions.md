@@ -1,3 +1,5 @@
+https://corise.com/course/analytics-engineering-with-dbt/v2/module/week-1-project-instructions
+
 ## How many users do we have?
 
 **Answer:**  130 users 
