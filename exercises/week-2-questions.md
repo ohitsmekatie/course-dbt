@@ -97,3 +97,12 @@ Everything here is pretty much as-is in the staging models, but I did add countr
 - `orders`
 - `order_items`
 - `products`
+
+
+## Testing thoughts 
+
+### What assumptions are you making about each model?
+
+### Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?
+
+## Your stakeholders at Greenery want to understand the state of the data each day. Explain how you would ensure these tests are passing regularly and how you would alert stakeholders about bad data getting through.
