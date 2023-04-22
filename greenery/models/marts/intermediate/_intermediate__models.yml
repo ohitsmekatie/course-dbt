@@ -2,7 +2,13 @@ version: 2
 
 models:
   - name: int_product__products_sold 
-    description: a joined intermediate model that has the number of products sold by timestamp. date is left in its most granular form for so grouping by different time ranges can be done downstream
+    description: a intermediate model that has the number of products sold by created_at timestamp. date is left in its most granular form for so grouping by different time ranges can be done downstream
  
   - name: int_marketing__product_site_performance 
-    description: a joined intermediate model that has the number of products by event (view, added to cart) by timestamp. date is left in its most granular form for so grouping by different time ranges can be done downstream
+    description: a intermediate model that has the number of products by event (view, added to cart) by created_at timestamp. date is left in its most granular form for so grouping by different time ranges can be done downstream
+
+  - name: int_product__order_statuses 
+    description: a intermiedate model that has the number of orders, by created_at timestamp, by status. date is left in its most granular form for so grouping by different time ranges can be done downstream
+  
+  - name: int_product__order_totals 
+    description: an intermediate model that sums the order total in dollars by created_at timetamp. date is left in its most granular form for so grouping by different time ranges can be done downstream
