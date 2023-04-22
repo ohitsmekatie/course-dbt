@@ -1,5 +1,5 @@
 with product_events as (
-select * from {{ ref('stg_events')}} 
+    select * from {{ ref('stg_events')}} 
 where product_id is not null 
 )
 
@@ -12,4 +12,3 @@ from product_events
 inner join {{ ref('products') }} 
 on product_events.product_id = products.product_id 
 group by 1,2,3
-
