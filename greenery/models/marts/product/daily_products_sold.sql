@@ -1,4 +1,3 @@
-{{ config(materialized='table') }}
 
 select 
     date(order_date) as order_day,

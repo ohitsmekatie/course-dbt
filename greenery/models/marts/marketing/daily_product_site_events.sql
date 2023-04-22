@@ -1,4 +1,3 @@
-{{ config(materialized='table') }}
 
 select 
     date(created_at) as event_day,

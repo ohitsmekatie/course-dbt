@@ -1,5 +1,5 @@
 
-{{ config(materialized='table') }}
+
 
 with users_w_orders as (
     select 

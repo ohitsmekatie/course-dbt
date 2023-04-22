@@ -1,3 +1,4 @@
+
 select 
     stg_users.*,
     stg_addresses.country as user_country,
