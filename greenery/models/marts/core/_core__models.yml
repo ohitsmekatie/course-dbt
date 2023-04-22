@@ -2,5 +2,6 @@ version: 2
 
 models:
   - name: orders 
+  - name: order_items 
   - name: products 
   - name: users 

@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: daily_product_site_events 
+    description:  a rollup of the number of products by site event (page view, added to cart) by day 
