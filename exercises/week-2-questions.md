@@ -101,8 +101,22 @@ Everything here is pretty much as-is in the staging models, but I did add countr
 
 ## Testing thoughts 
 
+- I added all my main tests at the staging layers, unless anything was specific to a transformation down the line. I felt like this was the easiest/best way to ensure all downstream data was the same as well as reduce the number of places I needed to actually add tests :D 
+
 ### What assumptions are you making about each model?
+
+- user's always have a unique `user_id` and the `user` source table has ` row per user 
+- user's will always have a created date if they are in the `user` source table and that will never be null 
+- user's can place mulitple orders, each of their orders will have a new `order_id`
+- a product always will have a `product_id` so that will be unique and not null 
+- a product's inventory can never be negative 
+- cost + shipping should equal the order total in `orders` 
 
 ### Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?
 
+- All values I tested for uniqueness and null values passed as expected 
+- There were some cases where order total did not match cost + shipping. I'm not sure if there's some kind of tax field missing or something else, but that would need to be investigated further! I removed the test for now so that the project runs
+
 ## Your stakeholders at Greenery want to understand the state of the data each day. Explain how you would ensure these tests are passing regularly and how you would alert stakeholders about bad data getting through.
+
+The `dbt build` command runs, compliles, and tests your models (as i understand). If you don't have an automated way to set this up you could run these daily and communicate the % of successful tests (or some kind of useful aggregate). Hopefully your tests catch any bad data as it slips through, but if it did I would just communicate what the bad data was and that it would be removed and tested for in the future. If needed, you might have to go to the source of the data quality issue (perhaps a team/process) to get that fixed. 
