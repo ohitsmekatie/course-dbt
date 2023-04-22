@@ -51,9 +51,14 @@ models:
     description: a row for each product on the platform 
     columns:  
       - name: product_id 
+        tests:
+          - unique 
+          - not_null 
       - name: product_name 
       - name: product_price_dollars 
       - name: inventory_amount 
+        tests:
+          - positive_values
 
   - name: stg_promos 
     description: a row for each promo available for orders/products 
@@ -66,11 +71,16 @@ models:
     description: a row for each user on the platform 
     columns: 
       - name: user_id 
+        tests:
+          - unique 
+          - not_null 
       - name: first_name
       - name: last_name 
       - name: email
       - name: phone_number 
       - name: created_at
+        tests:
+          - not_null 
       - name: updated_at
       - name: address_id
 
