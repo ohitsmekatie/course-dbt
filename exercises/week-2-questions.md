@@ -56,7 +56,7 @@ from counts
 
 - I decided to move my `intermediate` models into their own folder on the same level as staging & marts. Because of this I just prefaced everyting with `int_product__*` or `int_marketing__*` so that they were a little easier to identify. I also kept these to the date timestamps because I imagined that othe date grains outside of daily might be needed down the road
 - I tried to organize the models by functional area:
-  - Product: if teams were split into areas, I tried to imagine what a Product Manager or business stakeholder might care about 
+  - Product: if teams were split into engineering areas, I tried to imagine what a Product Manager or business stakeholder might care about 
   - Marketing: models focused around the website or users 
   - Core: reusable models ie: the foundational elements of the business (users, orders, items, products)
 - I materialized all the "end user" models as tables since these are the ones that are most likely to be queried. Instead of setting the configs in each of the files I just did that in the `dbt_project.yml` file at the folder level which was very handy!
@@ -65,6 +65,7 @@ from counts
 ### Explanation of different models:
 
 **Product:**
+
 -  `daily_delivered_order_totals`: to understand the order totals of orders that were delivered 
 
 <img width="328" alt="Screen Shot 2023-04-22 at 4 07 15 PM" src="https://user-images.githubusercontent.com/9855295/233804274-3ce93d24-d575-4733-8435-6bdc243e8842.png">
@@ -77,7 +78,6 @@ from counts
 - `daily_products_sold`: to keep an eye on the number of units sold, per product 
 
 <img width="534" alt="Screen Shot 2023-04-22 at 4 08 52 PM" src="https://user-images.githubusercontent.com/9855295/233804332-9ca1f51e-c121-4c5e-9b64-6593f5e02146.png">
-
 
 **Marketing**
 - `page_views`: page views from the website. I could see this going in product or marketing, but decided marketing. This is just from the event view where event_type = 'page_view'
