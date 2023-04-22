@@ -65,7 +65,7 @@ from counts
 ### Explanation of different models:
 
 **Product:**
--  `daily_delivered_order_totals`: to keep an eye on the number of daiy orders that were actually delivered 
+-  `daily_delivered_order_totals`: to understand the order totals of orders that were delivered 
 
 <img width="328" alt="Screen Shot 2023-04-22 at 4 07 15 PM" src="https://user-images.githubusercontent.com/9855295/233804274-3ce93d24-d575-4733-8435-6bdc243e8842.png">
 
@@ -81,14 +81,19 @@ from counts
 
 **Marketing**
 - `page_views`: page views from the website. I could see this going in product or marketing, but decided marketing. This is just from the event view where event_type = 'page_view'
-- `daily_product_site_events`: a daily view of event types by products for the website
+- `daily_product_site_events`: a daily view of event types by each product for the website
 
 <img width="606" alt="Screen Shot 2023-04-22 at 4 03 45 PM" src="https://user-images.githubusercontent.com/9855295/233804191-99cc0718-28f5-4077-bbec-cbcee4527d02.png">
 
-- `users_enhanced`: a beef of version of the core user table that could give business stakeholders information about how much a user has spent, when their first order was, their last order, time between signup date to first order placed, etc
+- `users_enhanced`: a beefed up version of the core user table that could give business stakeholders information about how much a user has spent, when their first order was, their last order, time between signup date to first order placed, etc
 
 <img width="1362" alt="Screen Shot 2023-04-22 at 4 05 27 PM" src="https://user-images.githubusercontent.com/9855295/233804220-f213f4dd-9077-41fb-8634-4f8b9acc31d1.png">
 
-
-
 **Core**
+
+Everything here is pretty much as-is in the staging models, but I did add country & state into the `users` model incase folks wanted to map trends in signups by geo or orders by geo
+
+- `users`
+- `orders`
+- `order_items`
+- `products`
