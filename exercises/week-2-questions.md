@@ -130,3 +130,33 @@ I added all my main tests at the staging layers, unless anything was specific to
 The `dbt build` command runs and tests your models (as i understand). If you don't have an automated way to set this up you could run these daily and communicate the % of successful tests (or some kind of useful aggregate). Hopefully your tests catch any bad data as it slips through, but if it did I would just communicate what the bad data was and that it would be removed and tested for in the future. If needed, you might have to go to the source of the data quality issue (perhaps a team/process) to get that fixed. 
 
 I'm not sure what kind of integrations exist within dbt, but it would be cool to be able to do automated alerts when build/runs fail to something like Slack or even email.
+
+## Which products had their inventory change from week 1 to week 2? 
+
+### Monstera
+
+| Snapshot date | Product | Inventory Amount |
+| --- | --- | --- | 
+| 2023-04-22	| Monstera	| 64 |
+| 2023-04-07 |	Monstera |	77 |
+
+### Philodendron
+
+| Snapshot date | Product | Inventory Amount |
+| --- | --- | --- | 
+| 2023-04-22 |	Philodendron | 25 |
+| 2023-04-07	| Philodendron	| 51 | 
+
+### Pothos 
+
+| Snapshot date | Product | Inventory Amount |
+| --- | --- | --- | 
+| 2023-04-22	| Pothos |	20 |
+| 2023-04-07 | 	Pothos |	40 |
+
+### String of pearls 
+
+| Snapshot date | Product | Inventory Amount |
+| --- | --- | --- | 
+| 2023-04-22 |	String of pearls |	10 |
+| 2023-04-07	| String of pearls |	58 |
