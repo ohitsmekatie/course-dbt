@@ -54,11 +54,11 @@ from counts
 
 **A few notes about why I organized my project the way I did:**
 
-- I decided to move my `intermediate` models into their own folder on the same level as staging & marts. Because of this I just prefaced everyting with `int_product__*` or `int_marketing__*` so that they were a little easier to identify. I also kept these to the date timestamps because I imagined that othe date grains outside of daily might be needed down the road
+- I decided to move my `intermediate` models into their own folder on the same level as the product, core, and marketing folders so that they have their own schema so they wouldn't be obvious/visible to end users of the data. Because of this I just prefaced everyting with `int_product__*` or `int_marketing__*` so that they were a little easier to identify. I also kept these to the date timestamps because I imagined that othe date grains outside of daily might be needed down the road
 - I tried to organize the models by functional area:
   - Product: if teams were split into engineering areas, I tried to imagine what a Product Manager or business stakeholder might care about 
   - Marketing: models focused around the website or users 
-  - Core: reusable models ie: the foundational elements of the business (users, orders, items, products)
+  - Core: the foundational elements of the business (users, orders, items, products) that i imagined could be useful on their own
 - I materialized all the "end user" models as tables since these are the ones that are most likely to be queried. Instead of setting the configs in each of the files I just did that in the `dbt_project.yml` file at the folder level which was very handy!
 - I also used the folders in `dbt_project.yml` to create some tags which helped me run only select models as I was testing things out
 
@@ -98,25 +98,35 @@ Everything here is pretty much as-is in the staging models, but I did add countr
 - `order_items`
 - `products`
 
-
 ## Testing thoughts 
 
-- I added all my main tests at the staging layers, unless anything was specific to a transformation down the line. I felt like this was the easiest/best way to ensure all downstream data was the same as well as reduce the number of places I needed to actually add tests :D 
+I added all my main tests at the staging layers, unless anything was specific to a transformation down the line. I felt like this was the easiest/best way to ensure all downstream data was the same as well as reduce the number of places I needed to actually add tests. I didn't go _super_ deep on the types of tests because of time, but i'm excited to try out a few more of the more "complex" tests in dbt expectations. For now, I started with:
+
+1. making sure dates were not in the future
+2. values that you would expect to be > 0 are
+3. totals match in the order table
+4. values you'd expect to be unique or null are  
 
 ### What assumptions are you making about each model?
 
-- user's always have a unique `user_id` and the `user` source table has ` row per user 
+- `user_id` will be unique to a user 
+- a `user_id` should not be null 
+- id's of each table will be unique and not null (product_id, event_id, etc)
 - user's will always have a created date if they are in the `user` source table and that will never be null 
-- user's can place mulitple orders, each of their orders will have a new `order_id`
-- a product always will have a `product_id` so that will be unique and not null 
-- a product's inventory can never be negative 
-- cost + shipping should equal the order total in `orders` 
+- a product's inventory will always be > 0 
+- a user's `created_at` or an order's `created_at` cannot be greater than the current date 
+- `order_cost`, `shipping_cost`, and `order_total` will be > $0
+- product_price_dollars will always be > $0 
+- tracking_id's for orders should be unique 
 
 ### Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?
 
-- All values I tested for uniqueness and null values passed as expected 
-- There were some cases where order total did not match cost + shipping. I'm not sure if there's some kind of tax field missing or something else, but that would need to be investigated further! I removed the test for now so that the project runs
+- There are 61 occurences of order_cost + shipping_cost != order_total. I removed these from the model for now, and decided to keep the test in place. 
+- There are 6 occurences of the tracking_id being repeated for different orders (different user_id's, different order amounts). i would expect this to be an issue but that could be a wrong assumption so for now i've just commented out that test
+
 
 ## Your stakeholders at Greenery want to understand the state of the data each day. Explain how you would ensure these tests are passing regularly and how you would alert stakeholders about bad data getting through.
 
-The `dbt build` command runs, compliles, and tests your models (as i understand). If you don't have an automated way to set this up you could run these daily and communicate the % of successful tests (or some kind of useful aggregate). Hopefully your tests catch any bad data as it slips through, but if it did I would just communicate what the bad data was and that it would be removed and tested for in the future. If needed, you might have to go to the source of the data quality issue (perhaps a team/process) to get that fixed. 
+The `dbt build` command runs and tests your models (as i understand). If you don't have an automated way to set this up you could run these daily and communicate the % of successful tests (or some kind of useful aggregate). Hopefully your tests catch any bad data as it slips through, but if it did I would just communicate what the bad data was and that it would be removed and tested for in the future. If needed, you might have to go to the source of the data quality issue (perhaps a team/process) to get that fixed. 
+
+I'm not sure what kind of integrations exist within dbt, but it would be cool to be able to do automated alerts when build/runs fail to something like Slack or even email.
