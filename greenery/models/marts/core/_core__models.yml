@@ -5,7 +5,7 @@ models:
     description: user orders. can be joined to users by user_id
 
   - name: order_items 
-    descrption: items from user orders. can be joined to orders by order_id 
+    description: items from user orders. can be joined to orders by order_id 
 
   - name: products 
     description: available products with price and inventory 

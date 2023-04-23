@@ -1,9 +1,6 @@
 version: 2
 
 models:
-  - name: page_views
-    description: website page views. contains only events with the event_type = 'page view'
-
   - name: daily_products_sold
     description: a rollup of the number of products sold, per day 
 
