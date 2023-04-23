@@ -3,18 +3,24 @@ version: 2
 models:
 
   - name: stg_addresses 
-    description: transformed table for user addresses 
+    description: a cleaned up and transformed view for user addresses. each user who places an order has an address
     columns: 
       - name: address_id
+        tests:
+         - not_null 
+         - unique 
       - name: address
       - name: zipcode
       - name: state
       - name: country 
     
   - name: stg_events 
-    description: transformed table of events
+    description: a cleaned up and transformed view of events. event types include page_view, add_to_cart, checkout, and package_shipped
     columns: 
       - name: event_id
+        tests:
+          - not_null 
+          - unique 
       - name: session_id
       - name: user_id
       - name: order_id
@@ -22,6 +28,9 @@ models:
       - name: page_url
       - name: created_at
       - name: event_type
+        tests: 
+         - dbt_expectations.expect_column_values_to_be_in_set:
+            value_set: ['page_view','checkout','package_shipped', 'add_to_cart']
 
   - name: stg_order_items 
     description: transformed table of items within a given order 
@@ -32,18 +41,33 @@ models:
 
   - name: stg_orders 
     description: transformed table of orders. each order has a unqique id. can be joined to order_items to get items in an order 
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "order_cost + shipping_cost = order_total"
     columns: 
       - name: order_id
+        tests:
+         - unique 
+         - not_null
       - name: user_id 
       - name: promo_id
       - name: address_id 
       - name: tracking_id 
+        tests:
+        #   - unique
       - name: created_at 
+        tests:
+          - dbt_utils.accepted_range:
+              max_value: "getdate()"
       - name: estimated_delivery_at 
       - name: delivered_at 
       - name: order_cost
+        tests:
+          - positive_values
       - name: shipping_cost 
+          - positive_values 
       - name: order_total 
+          - positive_values 
       - name: shipping_service 
       - name: status 
   
@@ -56,6 +80,8 @@ models:
           - not_null 
       - name: product_name 
       - name: product_price_dollars 
+        tests:
+         - positive_values 
       - name: inventory_amount 
         tests:
           - positive_values
@@ -64,7 +90,12 @@ models:
     description: a row for each promo available for orders/products 
     columns:
       - name: promo_id
+        tests:
+          - unique 
+          - not_null
       - name: discount 
+        tests:
+          - positive_values
       - name: status   
 
   - name: stg_users 
@@ -81,6 +112,8 @@ models:
       - name: created_at
         tests:
           - not_null 
+          - dbt_utils.accepted_range:
+              max_value: "getdate()"
       - name: updated_at
       - name: address_id
 

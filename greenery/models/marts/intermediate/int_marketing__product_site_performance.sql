@@ -1,5 +1,6 @@
 with product_events as (
     select * from {{ ref('stg_events')}} 
+-- beacause we just want events that have a product id to be able to count them 
 where product_id is not null 
 )
 

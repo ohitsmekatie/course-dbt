@@ -42,12 +42,13 @@ models:
         +tags: "marketing"
       product:
         +materialized: table
-        +tags: product 
+        +tags: "product"
+      intermediate:
+        +materialized: table
+        +tags: "intermediate"
 
     staging:
       +tags: "staging"
 
-    intermediate:
-      +tags: "intermediate"
    
 

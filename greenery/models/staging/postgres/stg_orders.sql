@@ -13,3 +13,4 @@ select
     shipping_service,
     status
 from {{ source('postgres', 'orders') }}
+where (order_cost + shipping_cost) = order_total

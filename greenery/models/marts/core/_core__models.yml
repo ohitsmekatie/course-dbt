@@ -2,6 +2,13 @@ version: 2
 
 models:
   - name: orders 
+    description: user orders. can be joined to users by user_id
+
   - name: order_items 
+    descrption: items from user orders. can be joined to orders by order_id 
+
   - name: products 
+    description: available products with price and inventory 
+
   - name: users 
+    description: greenery users table. each user that has an account on greenery is represented in a row 
