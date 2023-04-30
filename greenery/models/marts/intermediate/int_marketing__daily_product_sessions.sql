@@ -2,6 +2,6 @@ select
     date(created_at) as event_day,
     product_id,
     count(distinct session_id) as num_total_sessions
-from {{ ref('events') }}
+from {{ ref('stg_events') }}
 where product_id is not null 
 group by 1, 2

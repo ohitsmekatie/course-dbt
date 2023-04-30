@@ -1,9 +1,9 @@
 with web_events as (
-    select * from {{ ref('events') }} 
+    select * from {{ ref('stg_events') }} 
 ),
 
 orders_w_items as (
-    select * from {{ ref('order_items') }} 
+    select * from {{ ref('stg_order_items') }} 
 )
 
 select 
@@ -17,4 +17,3 @@ where
     web_events.order_id is not null 
     and web_events.event_type = 'checkout'
 group by 1, 2
-    

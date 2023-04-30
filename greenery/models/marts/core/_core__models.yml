@@ -12,3 +12,6 @@ models:
 
   - name: users 
     description: greenery users table. each user that has an account on greenery is represented in a row 
+
+  - name: events 
+    description: website events 

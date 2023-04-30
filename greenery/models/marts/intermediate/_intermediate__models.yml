@@ -12,3 +12,12 @@ models:
   
   - name: int_product__order_totals 
     description: an intermediate model that sums the order total in dollars by created_at timetamp. date is left in its most granular form for so grouping by different time ranges can be done downstream
+  
+  - name: int_marketing__daily_converted_product_sessions 
+    description: an intermediate model for calculating the number of converted sessions by product 
+  
+  - name: int_marketing__daily_ordered_product_sessions 
+    description: an intermediate model used for calculating product conversions that totals the number of sessions per ordered product 
+
+  - name: int_marketing__daily_product_sessions 
+    description: an intermediate model used for calculating product conversions that totals the number of sessions per product 

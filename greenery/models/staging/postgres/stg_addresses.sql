@@ -5,3 +5,4 @@ select
     state, 
     country 
 from {{ source('postgres', 'addresses') }}
+

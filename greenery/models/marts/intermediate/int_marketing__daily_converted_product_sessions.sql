@@ -1,9 +1,9 @@
 with products_ordered as (
-select * from {{ ref('daily_product_order_sessions') }} 
+select * from {{ ref('int_marketing__daily_ordered_product_sessions') }} 
 ),
 
 product_sessions as (
-select * from {{ ref('daily_product_sessions') }} 
+select * from {{ ref('int_marketing__daily_product_sessions') }} 
 ),
 
 product_conversions as (
@@ -27,5 +27,5 @@ select
     product_conversions.num_total_sessions,
     product_conversions.conversion_rate 
 from product_conversions
-inner join {{ ref('products') }} 
+inner join {{ ref('stg_products') }} as products 
     on product_conversions.product_id = products.product_id 
