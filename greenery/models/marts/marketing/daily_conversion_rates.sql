@@ -9,6 +9,6 @@ group by 1
 
 select 
     event_day,
-    round(checkout_sessions / total_sessions, 4) as conversion_rate 
+     {{ round_values('checkout_sessions / total_sessions') }} as conversion_rate 
 from session_counts 
 order by 1 

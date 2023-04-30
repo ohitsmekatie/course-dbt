@@ -90,3 +90,9 @@ order by product_conversion_rate desc
 
 </details>
 
+## Macros 
+
+I decided to start small and implemented a round_values macro that rounds values to 2 points. This could help with keeping reporting consistent.
+
+## Granting permissions 
+

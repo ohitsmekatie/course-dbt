@@ -1,0 +1,9 @@
+version: 2
+
+macros:
+  - name: round_value
+    description: A macro that rounds values to our preferred pointage (2)
+    arguments:
+      - name: column_name
+        type: string
+        description: The name of the column you want to convert
