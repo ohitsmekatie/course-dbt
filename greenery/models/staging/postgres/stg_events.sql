@@ -9,9 +9,9 @@ select
     event_type
 from  {{source('postgres', 'events') }}
 
-{% if target.name == 'dev' %}
+-- {% if target.name == 'dev' %}
 
-where date(created_at) >= dateadd('week', -3, current_date)
+-- where date(created_at) >= dateadd('week', -3, current_date)
 
-{% endif %}
+-- {% endif %}
 

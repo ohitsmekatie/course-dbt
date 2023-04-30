@@ -90,7 +90,13 @@ order by product_conversion_rate desc
 
 </details>
 
-## Macros 
+## Jinja & Macros
+
+### Jinja 
+
+I really like the idea of limiting the number of data generated to development tables so for a few of my staging models I added a jinja block to look at the target and only get 3 weeks of data, like in the lecture example. I commented it out for now because the test data doesn't go that far back, but in a situation where there was a lot of data I would definitely use this!
+
+### Macros 
 
 I decided to start small and implemented a round_values macro that rounds values to 2 points. This could help with keeping reporting consistent and folks would not really have to think about rounding values.
 
@@ -104,8 +110,8 @@ I didn't do anything wild here, and just experimented with copy / pasting the ex
 
 I installed the following packages:
 
-- dbt utils 
-- dbt expectations 
+- dbt utils --> i'll keep digging into uses for this as i'm refactoring the project 
+- dbt expectations  --> used this for testing 
 
 in a "real world" scenario I could see some of the fivetran packages being really helpful for cleaning up data from marketing & ad sources. 
 
