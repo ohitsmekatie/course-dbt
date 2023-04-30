@@ -96,3 +96,13 @@ I decided to start small and implemented a round_values macro that rounds values
 
 ## Granting permissions 
 
+I didn't do anything wild here, and just experimented with copy / pasting the example from the lecture but for the `reporting` role. 
+
+## Packages 
+
+I installed the following pacakges:
+
+- dbt utils 
+- dbt expectations 
+
+in a "real world" scenario I could see some of the fivetran packages being really helpful for cleaning up data from marketing & ad sources. 
