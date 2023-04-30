@@ -30,7 +30,7 @@ from session_counts
 
 ### What is our conversion rate by product?
 
-- **Answer:**
+**Answer:**
 
 | product_name | product_conversion_rate |
 | --- | --- |
