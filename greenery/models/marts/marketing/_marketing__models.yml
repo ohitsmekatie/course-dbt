@@ -7,3 +7,5 @@ models:
     description: website page views 
   - name: users_enhanced 
     description: an enhanced version of the users table with stats about orders and $
+  - name: daily_conversion_rates 
+    description: total unique sessions that end in checkout / total unique sessions by day 

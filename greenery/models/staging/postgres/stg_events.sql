@@ -8,3 +8,4 @@ select
     created_at,
     event_type
 from  {{source('postgres', 'events') }}
+
