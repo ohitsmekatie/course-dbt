@@ -1,5 +1,5 @@
 with products_ordered as (
-select * from {{ ref('daily_products_ordered') }} 
+select * from {{ ref('daily_product_order_sessions') }} 
 ),
 
 product_sessions as (
