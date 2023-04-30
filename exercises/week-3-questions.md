@@ -92,7 +92,9 @@ order by product_conversion_rate desc
 
 ## Macros 
 
-I decided to start small and implemented a round_values macro that rounds values to 2 points. This could help with keeping reporting consistent.
+I decided to start small and implemented a round_values macro that rounds values to 2 points. This could help with keeping reporting consistent and folks would not really have to think about rounding values.
+
+Maybe not the _most_ critical path for a macro but I wanted to try something that wasn't the example. :) 
 
 ## Granting permissions 
 
@@ -100,7 +102,7 @@ I didn't do anything wild here, and just experimented with copy / pasting the ex
 
 ## Packages 
 
-I installed the following pacakges:
+I installed the following packages:
 
 - dbt utils 
 - dbt expectations 
