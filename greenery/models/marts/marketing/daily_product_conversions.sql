@@ -12,7 +12,7 @@ select
     products_ordered.product_id,
     num_order_sessions,
     num_total_sessions,
-    round(num_order_sessions / num_total_sessions,4) as conversion_rate 
+    {{ round_values('num_order_sessions / num_total_sessions') }} as conversion_rate 
 from products_ordered
 inner join product_sessions 
     on products_ordered.event_day = product_sessions.event_day 
