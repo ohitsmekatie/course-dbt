@@ -24,12 +24,19 @@ select
     count(case when promo_id is not null then 1 else 0 end) as num_promos, 
     min(date(order_date)) as first_order_date,
     max(date(order_date)) as last_order_date,
-    coalesce(sum(order_total),0) as total_dollars_spent
+    coalesce(sum(order_total),0) as total_dollars_spent,
+    avg(order_total) as avg_order_total
 from users_w_orders
 group by 1,2 
-)
+),
 
+final as (
 select 
     order_metrics.*,
-    datediff('day', signup_date, first_order_date) as days_to_first_order
+    datediff('day', signup_date, first_order_date) as days_to_first_order,
+    case 
+        when num_orders > 1 then True else False end as is_repeat_user
 from order_metrics 
+)
+
+select * from final 
