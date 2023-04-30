@@ -106,3 +106,12 @@ I installed the following pacakges:
 - dbt expectations 
 
 in a "real world" scenario I could see some of the fivetran packages being really helpful for cleaning up data from marketing & ad sources. 
+
+
+## Snapshots 
+
+The following products changed from week 2 to 3:
+- Monstera
+- Philodendron
+- Pothos
+- String of pearls
